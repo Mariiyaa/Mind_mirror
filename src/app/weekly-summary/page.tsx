@@ -92,15 +92,15 @@ export default function WeeklySummary() {
           <div className="mt-8 grid grid-cols-3 gap-4 text-center">
             <div className="bg-green-100 p-4 rounded">
               <p className="text-lg font-semibold text-black">😊 Happy</p>
-              <p>{moodCounts.happy} day(s)</p>
+              <p className='text-black'>{moodCounts.happy} day(s)</p>
             </div>
             <div className="bg-yellow-100 p-4 rounded">
               <p className="text-lg font-semibold text-black">😐 Neutral</p>
-              <p>{moodCounts.neutral} day(s)</p>
+              <p className='text-black'>{moodCounts.neutral} day(s)</p>
             </div>
             <div className="bg-red-100 p-4 rounded">
               <p className="text-lg font-semibold text-black">😢 Sad</p>
-              <p>{moodCounts.sad} day(s)</p>
+              <p className='text-black'>{moodCounts.sad} day(s)</p>
             </div>
           </div>
         </>

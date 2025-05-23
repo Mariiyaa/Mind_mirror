@@ -26,10 +26,17 @@ export default function Dashboard() {
 
   const router = useRouter();
 
-  async function fetchEntries() {
-    const res = await fetch(`/api/journal?userId=${userId}`);
-    const data = await res.json();
-    setEntries(data);
+  async function fetchEntries(uid: string) {
+    fetch(`/api/journal?userId=${uid}`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (Array.isArray(data)) {
+        setEntries(data);
+      } else {
+        console.error("API error:", data);
+        setEntries([]);
+      }
+    })
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -42,7 +49,7 @@ export default function Dashboard() {
     });
 
     if (res.ok) {
-      fetchEntries();
+      fetchEntries(userId);
     }
   }
 
@@ -53,8 +60,10 @@ export default function Dashboard() {
       return;
     }
     const decoded: any = JSON.parse(atob(token.split(".")[1]));
-    setUserId(decoded.id);
-    fetchEntries();
+  const uid = decoded.id;
+  setUserId(uid);
+
+    fetchEntries(uid);
   }, []);
 
   return (
@@ -84,9 +93,9 @@ export default function Dashboard() {
           onChange={(e) => setEntry({ ...entry, mood: e.target.value })}
           className="border p-2"
         >
-          <option className="" value="happy">😊 Happy</option>
-          <option value="neutral">😐 Neutral</option>
-          <option value="sad">😢 Sad</option>
+          <option className="text-black" value="happy">😊 Happy</option>
+          <option className="text-black" value="neutral">😐 Neutral</option>
+          <option className="text-black" value="sad">😢 Sad</option>
         </select>
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
           Save Entry
