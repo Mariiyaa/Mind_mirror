@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Legend } from 'chart.js';
 
@@ -14,6 +15,7 @@ interface Entry {
 export default function WeeklySummary() {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [userId, setUserId] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -81,6 +83,12 @@ export default function WeeklySummary() {
 
   return (
     <main className="max-w-2xl mx-auto mt-10">
+       <button
+        onClick={() => router.push('/dashboard')}
+        className="absolute  right-8 bg-[#F59E0B] text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        ➕
+      </button>
       <h1 className="text-2xl font-bold mb-6">🧠 Weekly Mood Summary</h1>
 
       {entries.length === 0 ? (

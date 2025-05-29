@@ -74,30 +74,30 @@ export default function Dashboard() {
           placeholder="What went well today?"
           value={entry.wentWell}
           onChange={(e) => setEntry({ ...entry, wentWell: e.target.value })}
-          className="border p-2"
+          className="border p-2 rounded-md"
         />
         <textarea
           placeholder="What could have gone better?"
           value={entry.couldBeBetter}
           onChange={(e) => setEntry({ ...entry, couldBeBetter: e.target.value })}
-          className="border p-2"
+          className="border p-2 rounded-md"
         />
         <textarea
           placeholder="How are you feeling?"
           value={entry.feeling}
           onChange={(e) => setEntry({ ...entry, feeling: e.target.value })}
-          className="border p-2"
+          className="border p-2 rounded-md"
         />
         <select
           value={entry.mood}
           onChange={(e) => setEntry({ ...entry, mood: e.target.value })}
-          className="border p-2"
+          className="border p-2 rounded-md"
         >
           <option className="text-black" value="happy">😊 Happy</option>
           <option className="text-black" value="neutral">😐 Neutral</option>
           <option className="text-black" value="sad">😢 Sad</option>
         </select>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        <button type="submit" className="bg-[#F59E0B] text-white px-4 py-2 rounded">
           Save Entry
         </button>
       </form>
@@ -105,7 +105,7 @@ export default function Dashboard() {
       <h2 className="text-lg font-semibold mb-2">Previous Entries</h2>
       <ul className="space-y-4">
         {entries.map((e) => (
-          <li key={e._id} className="border p-4 rounded">
+          <li key={e._id} className="border p-4 rounded-md">
             <p><strong>Date:</strong> {new Date(e.date).toDateString()}</p>
             <p><strong>Mood:</strong> {e.mood}</p>
             <p><strong>Feeling:</strong> {e.feeling}</p>
